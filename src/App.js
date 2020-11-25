@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import useJsonFetch from './components/useJsonFetch';
 
 function App() {
+  const [data1, isLoading1, hasError1] = useJsonFetch('http://localhost:7070/data');
+  const [data2, isLoading2, hasError2] = useJsonFetch('http://localhost:7070/error');
+  const [data3, isLoading3, hasError3] = useJsonFetch(' http://localhost:7070/loading');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>{isLoading1 ? 'Loading1' : (data1 || hasError1)}</p>
+      <p>{isLoading2 ? 'loading2' : (data2 || hasError2)}</p>
+      <p>{isLoading3 ? 'loading3' : (data3 || hasError3)}</p>
     </div>
   );
 }
